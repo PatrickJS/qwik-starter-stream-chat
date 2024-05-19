@@ -4,7 +4,7 @@ import {
   $,
   JSXOutput,
   useSignal,
-  useVisibleTask$,
+  useVisibleTask$
 } from '@builder.io/qwik';
 import { server$ } from '@builder.io/qwik-city';
 
@@ -13,7 +13,9 @@ export default component$(() => {
   const startStreaming = $(async () => {
     const stream = await severStream();
     for await (const jsx of stream) {
-      output.push(jsx);
+      if (output && jsx) {
+        output.push(jsx);
+      }
     }
   });
   return (
@@ -49,69 +51,98 @@ let count = 0;
 const severStream = server$(async function* () {
   const yo = count++;
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>Check out how streaming works in Qwik! </span>
     </div>
-  );
+    <br />
+    </>);
   await delay(500);
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>You can even stream components: </span>
     </div>
+    <br />
+    </>
   );
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <Greeter name="World" />
     </div>
+    <br />
+    </>
   );
   await delay(500);
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>Or interactive components: </span>
     </div>
+    <br />
+    </>
   );
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <Counter />
     </div>
+    <br />
+    </>
   );
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>! </span>
     </div>
+    <br />
+    </>
   );
   await delay(500);
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>Or event self runnig ones: </span>
     </div>
+    <br />
+    </>
   );
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <Clock />
     </div>
+    <br />
+    </>
   );
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>! </span>
     </div>
+    <br />
+    </>
   );
   await delay(500);
   yield (
+    <>
     <div>
-      {yo}
+      {yo}:{' '}
       <span>
         Ohh, and all of the code streams into the client (loads lazily)!
       </span>
     </div>
+    <br />
+    </>
   );
 });
