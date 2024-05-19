@@ -47,14 +47,17 @@ const Clock = component$(() => {
 });
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-let count = 0;
+
+// server state
+let instanceRequest = 0;
+
 const severStream = server$(async function* () {
-  const yo = count++;
+  const yo = instanceRequest++;
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>Check out how streaming works in Qwik! </span>
+      {yo}: 
+      <span> Check out how streaming works in Qwik! </span>
     </div>
     <br />
     </>);
@@ -62,8 +65,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>You can even stream components: </span>
+      {yo}: 
+      <span> You can even stream components: </span>
     </div>
     <br />
     </>
@@ -71,7 +74,7 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
+      {yo}: 
       <Greeter name="World" />
     </div>
     <br />
@@ -81,8 +84,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>Or interactive components: </span>
+      {yo}: 
+      <span> Or interactive components: </span>
     </div>
     <br />
     </>
@@ -90,7 +93,7 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
+      {yo}: 
       <Counter />
     </div>
     <br />
@@ -99,8 +102,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>! </span>
+      {yo}: 
+      <span> ! </span>
     </div>
     <br />
     </>
@@ -109,8 +112,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>Or event self runnig ones: </span>
+      {yo}: 
+      <span> Or event self runnig ones: </span>
     </div>
     <br />
     </>
@@ -118,7 +121,7 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
+      {yo}: 
       <Clock />
     </div>
     <br />
@@ -127,8 +130,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>! </span>
+      {yo}: 
+      <span> ! </span>
     </div>
     <br />
     </>
@@ -137,8 +140,8 @@ const severStream = server$(async function* () {
   yield (
     <>
     <div>
-      {yo}:{' '}
-      <span>
+      {yo}: 
+      <span> 
         Ohh, and all of the code streams into the client (loads lazily)!
       </span>
     </div>
