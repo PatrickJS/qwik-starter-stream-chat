@@ -1,1 +1,1 @@
-stream jsx over server$ for Chat
+stream jsx over server$ with async generator functions
